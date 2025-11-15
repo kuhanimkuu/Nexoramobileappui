@@ -8,9 +8,10 @@ import { posts as initialPosts } from '../lib/data';
 interface HomeScreenProps {
   onCreatePost: () => void;
   onNotifications: () => void;
+  onPostDetail: (postId: string) => void;
 }
 
-export function HomeScreen({ onCreatePost, onNotifications }: HomeScreenProps) {
+export function HomeScreen({ onCreatePost, onNotifications, onPostDetail }: HomeScreenProps) {
   const [posts, setPosts] = useState(initialPosts);
 
   const handleLike = (postId: string) => {
@@ -55,7 +56,8 @@ export function HomeScreen({ onCreatePost, onNotifications }: HomeScreenProps) {
             key={post.id}
             post={post}
             onLike={() => handleLike(post.id)}
-            onComment={() => console.log('Comment on', post.id)}
+            onClick={() => onPostDetail(post.id)}
+            onComment={() => onPostDetail(post.id)}
             onShare={() => console.log('Share', post.id)}
           />
         ))}

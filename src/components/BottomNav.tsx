@@ -1,6 +1,6 @@
-import { Home, MessageSquare, BarChart3, User } from 'lucide-react';
+import { Home, MessageSquare, Users, User } from 'lucide-react';
 
-type Tab = 'home' | 'chats' | 'polls' | 'profile';
+type Tab = 'home' | 'chats' | 'communities' | 'profile';
 
 interface BottomNavProps {
   activeTab: Tab;
@@ -11,7 +11,7 @@ export function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
   const tabs = [
     { id: 'home' as const, label: 'Home', icon: Home },
     { id: 'chats' as const, label: 'Chats', icon: MessageSquare },
-    { id: 'polls' as const, label: 'Polls', icon: BarChart3 },
+    { id: 'communities' as const, label: 'Communities', icon: Users },
     { id: 'profile' as const, label: 'Profile', icon: User },
   ];
 

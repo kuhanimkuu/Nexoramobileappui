@@ -22,6 +22,27 @@ export interface Post {
   isLiked?: boolean;
 }
 
+export interface Comment {
+  id: string;
+  user: User;
+  content: string;
+  timestamp: string;
+  likes: number;
+  isLiked?: boolean;
+}
+
+export interface Community {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  coverImage: string;
+  members: number;
+  posts: number;
+  isJoined: boolean;
+  category: string;
+}
+
 export interface Chat {
   id: string;
   user: User;
@@ -174,6 +195,112 @@ export const posts: Post[] = [
     comments: 45,
     shares: 23,
     isLiked: false,
+  },
+];
+
+// Sample comments
+export const comments: Comment[] = [
+  {
+    id: '1',
+    user: users[1],
+    content: 'This is incredible work! The attention to detail is amazing 🔥',
+    timestamp: '1h ago',
+    likes: 23,
+    isLiked: false,
+  },
+  {
+    id: '2',
+    user: users[3],
+    content: 'Love the new design! How long did it take to complete?',
+    timestamp: '1h ago',
+    likes: 12,
+    isLiked: true,
+  },
+  {
+    id: '3',
+    user: users[4],
+    content: 'The color palette is so clean. Mind sharing what tools you used?',
+    timestamp: '45m ago',
+    likes: 8,
+    isLiked: false,
+  },
+  {
+    id: '4',
+    user: users[2],
+    content: 'Would love to collaborate on something similar! DM me if interested 💜',
+    timestamp: '30m ago',
+    likes: 15,
+    isLiked: false,
+  },
+];
+
+// Sample communities
+export const communities: Community[] = [
+  {
+    id: '1',
+    name: 'UI/UX Designers',
+    description: 'A community for designers to share work, get feedback, and connect',
+    icon: '🎨',
+    coverImage: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=300&fit=crop',
+    members: 45200,
+    posts: 1234,
+    isJoined: true,
+    category: 'Design',
+  },
+  {
+    id: '2',
+    name: 'Web Developers',
+    description: 'Everything web development: React, Vue, Angular, and more',
+    icon: '💻',
+    coverImage: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=300&fit=crop',
+    members: 89300,
+    posts: 3456,
+    isJoined: true,
+    category: 'Technology',
+  },
+  {
+    id: '3',
+    name: 'Startup Founders',
+    description: 'Connect with fellow entrepreneurs and share your journey',
+    icon: '🚀',
+    coverImage: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=300&fit=crop',
+    members: 23400,
+    posts: 892,
+    isJoined: false,
+    category: 'Business',
+  },
+  {
+    id: '4',
+    name: 'Digital Artists',
+    description: 'Share your digital art, get inspired, and learn new techniques',
+    icon: '🖼️',
+    coverImage: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&h=300&fit=crop',
+    members: 67800,
+    posts: 5234,
+    isJoined: true,
+    category: 'Art',
+  },
+  {
+    id: '5',
+    name: 'Photography',
+    description: 'For photographers of all levels to share and discuss',
+    icon: '📸',
+    coverImage: 'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800&h=300&fit=crop',
+    members: 102000,
+    posts: 8901,
+    isJoined: false,
+    category: 'Photography',
+  },
+  {
+    id: '6',
+    name: 'Remote Workers',
+    description: 'Tips, tools, and community for the remote work lifestyle',
+    icon: '🏡',
+    coverImage: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&h=300&fit=crop',
+    members: 54600,
+    posts: 2345,
+    isJoined: false,
+    category: 'Lifestyle',
   },
 ];
 

@@ -5,9 +5,11 @@ import { AuthScreen } from './screens/AuthScreen';
 import { HomeScreen } from './screens/HomeScreen';
 import { ChatsScreen } from './screens/ChatsScreen';
 import { ChatDetailScreen } from './screens/ChatDetailScreen';
-import { PollsScreen } from './screens/PollsScreen';
+import { CommunitiesScreen } from './screens/CommunitiesScreen';
+import { CommunityDetailScreen } from './screens/CommunityDetailScreen';
 import { ProfileScreen } from './screens/ProfileScreen';
 import { NotificationsScreen } from './screens/NotificationsScreen';
+import { PostDetailScreen } from './screens/PostDetailScreen';
 import { CreatePostScreen } from './screens/CreatePostScreen';
 import { CreatePollScreen } from './screens/CreatePollScreen';
 import { SettingsScreen } from './screens/SettingsScreen';
@@ -20,19 +22,23 @@ type Screen =
   | 'home'
   | 'chats'
   | 'chatDetail'
-  | 'polls'
+  | 'communities'
+  | 'communityDetail'
   | 'profile'
   | 'notifications'
+  | 'postDetail'
   | 'createPost'
   | 'createPoll'
   | 'settings';
 
-type MainTab = 'home' | 'chats' | 'polls' | 'profile';
+type MainTab = 'home' | 'chats' | 'communities' | 'profile';
 
 export default function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('splash');
   const [activeTab, setActiveTab] = useState<MainTab>('home');
   const [previousScreen, setPreviousScreen] = useState<Screen>('home');
+  const [selectedPostId, setSelectedPostId] = useState<string>('1');
+  const [selectedCommunityId, setSelectedCommunityId] = useState<string>('1');
 
   const navigate = (screen: Screen) => {
     setPreviousScreen(currentScreen);
@@ -48,7 +54,17 @@ export default function App() {
     setCurrentScreen(tab);
   };
 
-  const showBottomNav = ['home', 'chats', 'polls', 'profile'].includes(currentScreen);
+  const handlePostDetail = (postId: string) => {
+    setSelectedPostId(postId);
+    navigate('postDetail');
+  };
+
+  const handleCommunitySelect = (communityId: string) => {
+    setSelectedCommunityId(communityId);
+    navigate('communityDetail');
+  };
+
+  const showBottomNav = ['home', 'chats', 'communities', 'profile'].includes(currentScreen);
 
   return (
     <div className="relative">
@@ -70,6 +86,7 @@ export default function App() {
         <HomeScreen
           onCreatePost={() => navigate('createPost')}
           onNotifications={() => navigate('notifications')}
+          onPostDetail={handlePostDetail}
         />
       )}
 
@@ -82,8 +99,19 @@ export default function App() {
 
       {currentScreen === 'chatDetail' && <ChatDetailScreen onBack={goBack} />}
 
-      {currentScreen === 'polls' && (
-        <PollsScreen onCreatePoll={() => navigate('createPoll')} />
+      {currentScreen === 'communities' && (
+        <CommunitiesScreen
+          onCommunitySelect={handleCommunitySelect}
+          onCreateCommunity={() => console.log('Create community')}
+        />
+      )}
+
+      {currentScreen === 'communityDetail' && (
+        <CommunityDetailScreen
+          communityId={selectedCommunityId}
+          onBack={goBack}
+          onPostDetail={handlePostDetail}
+        />
       )}
 
       {currentScreen === 'profile' && (
@@ -91,6 +119,10 @@ export default function App() {
       )}
 
       {currentScreen === 'notifications' && <NotificationsScreen onBack={goBack} />}
+
+      {currentScreen === 'postDetail' && (
+        <PostDetailScreen postId={selectedPostId} onBack={goBack} />
+      )}
 
       {currentScreen === 'createPost' && (
         <CreatePostScreen

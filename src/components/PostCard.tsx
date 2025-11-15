@@ -7,9 +7,10 @@ interface PostCardProps {
   onLike?: () => void;
   onComment?: () => void;
   onShare?: () => void;
+  onClick?: () => void;
 }
 
-export function PostCard({ post, onLike, onComment, onShare }: PostCardProps) {
+export function PostCard({ post, onLike, onComment, onShare, onClick }: PostCardProps) {
   return (
     <div className="bg-white rounded-2xl p-4 mb-3 shadow-card hover:shadow-card-hover transition-all duration-200">
       {/* Header */}
@@ -35,18 +36,20 @@ export function PostCard({ post, onLike, onComment, onShare }: PostCardProps) {
       </div>
 
       {/* Content */}
-      <p className="text-text-primary mb-3 leading-relaxed">{post.content}</p>
+      <button onClick={onClick} className="w-full text-left">
+        <p className="text-text-primary mb-3 leading-relaxed">{post.content}</p>
 
-      {/* Image */}
-      {post.image && (
-        <div className="mb-3 rounded-xl overflow-hidden">
-          <ImageWithFallback
-            src={post.image}
-            alt="Post content"
-            className="w-full h-auto object-cover"
-          />
-        </div>
-      )}
+        {/* Image */}
+        {post.image && (
+          <div className="mb-3 rounded-xl overflow-hidden">
+            <ImageWithFallback
+              src={post.image}
+              alt="Post content"
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        )}
+      </button>
 
       {/* Actions */}
       <div className="flex items-center gap-6 pt-3 border-t border-border-light">
@@ -65,7 +68,7 @@ export function PostCard({ post, onLike, onComment, onShare }: PostCardProps) {
         </button>
 
         <button
-          onClick={onComment}
+          onClick={onComment || onClick}
           className="flex items-center gap-2 text-text-secondary hover:text-nexora-blue transition-all group"
         >
           <MessageCircle className="w-5 h-5 transition-transform group-hover:scale-110" />
