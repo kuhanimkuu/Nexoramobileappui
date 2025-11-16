@@ -16,7 +16,7 @@ export function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-border-light z-50">
+    <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-dark-surface border-t border-border-light dark:border-dark-border z-50">
       <div className="max-w-2xl mx-auto px-2">
         <div className="flex items-center justify-around h-16">
           {tabs.map((tab) => {
@@ -38,12 +38,12 @@ export function BottomNav({ activeTab, onTabChange }: BottomNavProps) {
                   className={`w-6 h-6 transition-all ${
                     isActive
                       ? 'text-nexora-blue scale-110'
-                      : 'text-text-secondary group-hover:text-nexora-blue group-hover:scale-105'
+                      : 'text-text-secondary dark:text-dark-text-secondary group-hover:text-nexora-blue group-hover:scale-105'
                   }`}
                 />
                 <span
                   className={`transition-all ${
-                    isActive ? 'text-nexora-blue font-medium' : 'text-text-secondary'
+                    isActive ? 'text-nexora-blue font-medium' : 'text-text-secondary dark:text-dark-text-secondary'
                   }`}
                 >
                   {tab.label}

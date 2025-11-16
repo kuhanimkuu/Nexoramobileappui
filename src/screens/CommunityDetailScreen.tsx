@@ -32,27 +32,27 @@ export function CommunityDetailScreen({ communityId, onBack, onPostDetail }: Com
   };
 
   return (
-    <div className="fixed inset-0 bg-soft-white flex flex-col">
+    <div className="fixed inset-0 bg-soft-white dark:bg-dark-bg flex flex-col">
       {/* Header */}
-      <header className="bg-white border-b border-border-light">
+      <header className="bg-white dark:bg-dark-surface border-b border-border-light dark:border-dark-border">
         <div className="max-w-2xl mx-auto">
           {/* Top Bar */}
           <div className="px-4 py-3 flex items-center justify-between">
             <button
               onClick={onBack}
-              className="p-2 hover:bg-soft-white rounded-full transition-colors -ml-2"
+              className="p-2 hover:bg-soft-white dark:hover:bg-dark-surface-elevated rounded-full transition-colors -ml-2"
             >
-              <ArrowLeft className="w-5 h-5" />
+              <ArrowLeft className="w-5 h-5 text-text-primary dark:text-dark-text-primary" />
             </button>
             <div className="flex items-center gap-2">
-              <button className="p-2 hover:bg-soft-white rounded-full transition-colors">
-                <Search className="w-5 h-5 text-text-secondary" />
+              <button className="p-2 hover:bg-soft-white dark:hover:bg-dark-surface-elevated rounded-full transition-colors">
+                <Search className="w-5 h-5 text-text-secondary dark:text-dark-text-secondary" />
               </button>
-              <button className="p-2 hover:bg-soft-white rounded-full transition-colors">
-                <Share2 className="w-5 h-5 text-text-secondary" />
+              <button className="p-2 hover:bg-soft-white dark:hover:bg-dark-surface-elevated rounded-full transition-colors">
+                <Share2 className="w-5 h-5 text-text-secondary dark:text-dark-text-secondary" />
               </button>
-              <button className="p-2 hover:bg-soft-white rounded-full transition-colors">
-                <Settings className="w-5 h-5 text-text-secondary" />
+              <button className="p-2 hover:bg-soft-white dark:hover:bg-dark-surface-elevated rounded-full transition-colors">
+                <Settings className="w-5 h-5 text-text-secondary dark:text-dark-text-secondary" />
               </button>
             </div>
           </div>
@@ -70,60 +70,57 @@ export function CommunityDetailScreen({ communityId, onBack, onPostDetail }: Com
           {/* Community Info */}
           <div className="px-4 pb-4">
             <div className="flex items-end justify-between -mt-8 mb-4">
-              <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center text-4xl shadow-lg border-4 border-white">
+              <div className="w-20 h-20 bg-white dark:bg-dark-surface rounded-2xl flex items-center justify-center text-4xl shadow-lg border-4 border-white dark:border-dark-surface">
                 {community.icon}
               </div>
             </div>
 
             <h2 className="mb-1">{community.name}</h2>
-            <p className="text-text-secondary mb-3">{community.description}</p>
+            <p className="text-text-secondary dark:text-dark-text-secondary mb-3">{community.description}</p>
 
             {/* Stats */}
             <div className="flex items-center gap-6 mb-4">
-              <div>
-                <p className="font-semibold text-text-primary">{formatNumber(community.members)}</p>
-                <p className="text-text-secondary">Members</p>
-              </div>
-              <div>
-                <p className="font-semibold text-text-primary">{formatNumber(community.posts)}</p>
-                <p className="text-text-secondary">Posts</p>
-              </div>
-              <div>
-                <span className="px-3 py-1 bg-nexora-blue/10 text-nexora-blue rounded-full font-medium">
-                  {community.category}
+              <div className="flex items-center gap-2">
+                <Users className="w-5 h-5 text-text-secondary dark:text-dark-text-secondary" />
+                <span className="font-semibold text-text-primary dark:text-dark-text-primary">
+                  {formatNumber(community.members)} members
                 </span>
               </div>
+              <span className="px-3 py-1 bg-nexora-blue/10 text-nexora-blue rounded-full">
+                {community.category}
+              </span>
             </div>
 
-            {/* Action Buttons */}
+            {/* Actions */}
             <div className="flex gap-2">
               <Button
                 onClick={() => setIsJoined(!isJoined)}
                 className={`flex-1 h-11 ${
                   isJoined
-                    ? 'bg-white border-2 border-nexora-blue text-nexora-blue hover:bg-nexora-blue hover:text-white'
+                    ? 'bg-white dark:bg-dark-bg border-2 border-nexora-blue text-nexora-blue hover:bg-nexora-blue hover:text-white'
                     : 'bg-gradient-to-r from-nexora-blue to-accent-purple hover:opacity-90 text-white'
                 }`}
               >
+                <Users className="w-5 h-5 mr-2" />
                 {isJoined ? 'Joined' : 'Join Community'}
               </Button>
-              {isJoined && (
-                <Button
-                  variant="outline"
-                  className="border-2 px-4"
-                >
-                  <Bell className="w-5 h-5" />
-                </Button>
-              )}
+              <Button
+                variant="outline"
+                className="h-11 px-4 border-2 dark:border-dark-border dark:hover:bg-dark-surface-elevated"
+              >
+                <Bell className="w-5 h-5" />
+              </Button>
             </div>
           </div>
 
           {/* Tabs */}
-          <div className="flex border-t border-border-light">
+          <div className="px-4 flex gap-1 border-t border-border-light dark:border-dark-border">
             <button
               onClick={() => setActiveTab('posts')}
               className={`flex-1 py-3 font-medium transition-colors relative ${
-                activeTab === 'posts' ? 'text-nexora-blue' : 'text-text-secondary'
+                activeTab === 'posts'
+                  ? 'text-nexora-blue'
+                  : 'text-text-secondary dark:text-dark-text-secondary hover:text-nexora-blue'
               }`}
             >
               Posts
@@ -134,7 +131,9 @@ export function CommunityDetailScreen({ communityId, onBack, onPostDetail }: Com
             <button
               onClick={() => setActiveTab('polls')}
               className={`flex-1 py-3 font-medium transition-colors relative ${
-                activeTab === 'polls' ? 'text-nexora-blue' : 'text-text-secondary'
+                activeTab === 'polls'
+                  ? 'text-nexora-blue'
+                  : 'text-text-secondary dark:text-dark-text-secondary hover:text-nexora-blue'
               }`}
             >
               Polls
@@ -145,7 +144,9 @@ export function CommunityDetailScreen({ communityId, onBack, onPostDetail }: Com
             <button
               onClick={() => setActiveTab('about')}
               className={`flex-1 py-3 font-medium transition-colors relative ${
-                activeTab === 'about' ? 'text-nexora-blue' : 'text-text-secondary'
+                activeTab === 'about'
+                  ? 'text-nexora-blue'
+                  : 'text-text-secondary dark:text-dark-text-secondary hover:text-nexora-blue'
               }`}
             >
               About
@@ -159,51 +160,48 @@ export function CommunityDetailScreen({ communityId, onBack, onPostDetail }: Com
 
       {/* Content */}
       <main className="flex-1 overflow-y-auto">
-        <div className="max-w-2xl mx-auto px-4 pt-4 pb-20">
+        <div className="max-w-2xl mx-auto">
           {activeTab === 'posts' && (
-            <div>
+            <div className="px-4 pt-4">
               {communityPosts.map((post) => (
-                <div key={post.id} onClick={() => onPostDetail(post.id)}>
-                  <PostCard post={post} />
-                </div>
+                <PostCard key={post.id} post={post} onClick={() => onPostDetail(post.id)} />
               ))}
             </div>
           )}
 
           {activeTab === 'polls' && (
-            <div className="text-center py-16">
-              <Users className="w-16 h-16 text-text-muted mx-auto mb-3" />
-              <p className="text-text-secondary">No polls yet</p>
-              <p className="text-text-muted mt-1">Be the first to create a poll!</p>
+            <div className="px-4 pt-4 space-y-4">
+              <PollCard />
+              <PollCard />
             </div>
           )}
 
           {activeTab === 'about' && (
-            <div className="bg-white rounded-2xl p-6">
-              <h3 className="mb-3">About this community</h3>
-              <p className="text-text-primary leading-relaxed mb-6">{community.description}</p>
-
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-nexora-blue/10 flex items-center justify-center">
-                    <Users className="w-6 h-6 text-nexora-blue" />
+            <div className="px-4 pt-4">
+              <div className="bg-white dark:bg-dark-surface rounded-2xl p-4 shadow-card dark:shadow-dark-card">
+                <h3 className="mb-3">About this community</h3>
+                <p className="text-text-secondary dark:text-dark-text-secondary mb-4">
+                  {community.description}
+                </p>
+                <div className="space-y-2 pt-3 border-t border-border-light dark:border-dark-border">
+                  <div className="flex justify-between">
+                    <span className="text-text-secondary dark:text-dark-text-secondary">Created</span>
+                    <span className="text-text-primary dark:text-dark-text-primary font-medium">
+                      January 15, 2024
+                    </span>
                   </div>
-                  <div>
-                    <p className="font-semibold text-text-primary">
-                      {formatNumber(community.members)} Members
-                    </p>
-                    <p className="text-text-secondary">Active community</p>
+                  <div className="flex justify-between">
+                    <span className="text-text-secondary dark:text-dark-text-secondary">Members</span>
+                    <span className="text-text-primary dark:text-dark-text-primary font-medium">
+                      {formatNumber(community.members)}
+                    </span>
                   </div>
-                </div>
-
-                <div className="pt-4 border-t border-border-light">
-                  <h3 className="mb-2">Community Guidelines</h3>
-                  <ul className="space-y-2 text-text-secondary">
-                    <li>• Be respectful and kind to all members</li>
-                    <li>• Share relevant and valuable content</li>
-                    <li>• No spam or self-promotion</li>
-                    <li>• Follow the community standards</li>
-                  </ul>
+                  <div className="flex justify-between">
+                    <span className="text-text-secondary dark:text-dark-text-secondary">Category</span>
+                    <span className="text-text-primary dark:text-dark-text-primary font-medium">
+                      {community.category}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>

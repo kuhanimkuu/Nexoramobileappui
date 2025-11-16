@@ -10,7 +10,7 @@ export function ChatItem({ chat, onClick }: ChatItemProps) {
   return (
     <button
       onClick={onClick}
-      className="w-full px-4 py-3 flex items-center gap-3 hover:bg-white transition-colors"
+      className="w-full px-4 py-3 flex items-center gap-3 hover:bg-white dark:hover:bg-dark-surface transition-colors"
     >
       {/* Avatar */}
       <div className="relative flex-shrink-0">
@@ -20,18 +20,18 @@ export function ChatItem({ chat, onClick }: ChatItemProps) {
           className="w-14 h-14 rounded-full object-cover"
         />
         {chat.user.isOnline && (
-          <div className="absolute bottom-0 right-0 w-4 h-4 bg-success rounded-full border-2 border-white" />
+          <div className="absolute bottom-0 right-0 w-4 h-4 bg-success rounded-full border-2 border-white dark:border-dark-bg" />
         )}
       </div>
 
       {/* Content */}
       <div className="flex-1 min-w-0 text-left">
         <div className="flex items-center justify-between mb-1">
-          <p className="font-semibold text-text-primary truncate">{chat.user.name}</p>
-          <span className="text-text-secondary flex-shrink-0 ml-2">{chat.timestamp}</span>
+          <p className="font-semibold text-text-primary dark:text-dark-text-primary truncate">{chat.user.name}</p>
+          <span className="text-text-secondary dark:text-dark-text-secondary flex-shrink-0 ml-2">{chat.timestamp}</span>
         </div>
         <div className="flex items-center justify-between gap-2">
-          <p className="text-text-secondary truncate flex-1">
+          <p className="text-text-secondary dark:text-dark-text-secondary truncate flex-1">
             {chat.isTyping ? (
               <span className="text-nexora-blue italic">typing...</span>
             ) : (

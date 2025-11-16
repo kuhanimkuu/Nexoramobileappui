@@ -26,14 +26,14 @@ export function CreatePostScreen({ onBack, onPost }: CreatePostScreenProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-soft-white flex flex-col z-50">
+    <div className="fixed inset-0 bg-soft-white dark:bg-dark-bg flex flex-col z-50">
       {/* Header */}
-      <header className="bg-white border-b border-border-light px-4 py-3 flex items-center justify-between">
+      <header className="bg-white dark:bg-dark-surface border-b border-border-light dark:border-dark-border px-4 py-3 flex items-center justify-between">
         <button
           onClick={onBack}
-          className="p-2 hover:bg-soft-white rounded-full transition-colors -ml-2"
+          className="p-2 hover:bg-soft-white dark:hover:bg-dark-surface-elevated rounded-full transition-colors -ml-2"
         >
-          <ArrowLeft className="w-5 h-5" />
+          <ArrowLeft className="w-5 h-5 text-text-primary dark:text-dark-text-primary" />
         </button>
         <h3>Create Post</h3>
         <Button
@@ -52,7 +52,7 @@ export function CreatePostScreen({ onBack, onPost }: CreatePostScreenProps) {
             value={content}
             onChange={(e) => setContent(e.target.value)}
             placeholder="What's on your mind?"
-            className="min-h-[200px] border-0 focus-visible:ring-0 resize-none text-lg p-0"
+            className="min-h-[200px] border-0 focus-visible:ring-0 resize-none text-lg p-0 bg-transparent text-text-primary dark:text-dark-text-primary placeholder:text-text-muted dark:placeholder:text-dark-text-muted"
             autoFocus
           />
 
@@ -71,15 +71,15 @@ export function CreatePostScreen({ onBack, onPost }: CreatePostScreenProps) {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white border-t border-border-light px-4 py-3">
+      <footer className="bg-white dark:bg-dark-surface border-t border-border-light dark:border-dark-border px-4 py-3">
         <div className="max-w-2xl mx-auto">
           <button
             onClick={handleAddImage}
             disabled={!!image}
-            className="flex items-center gap-2 px-4 py-2 hover:bg-soft-white rounded-xl transition-colors disabled:opacity-50"
+            className="flex items-center gap-2 px-4 py-2 hover:bg-soft-white dark:hover:bg-dark-surface-elevated rounded-xl transition-colors disabled:opacity-50"
           >
             <ImageIcon className="w-5 h-5 text-nexora-blue" />
-            <span className="text-text-primary font-medium">Add Image</span>
+            <span className="text-text-primary dark:text-dark-text-primary font-medium">Add Image</span>
           </button>
         </div>
       </footer>

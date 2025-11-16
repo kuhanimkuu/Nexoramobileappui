@@ -25,14 +25,14 @@ export function NotificationsScreen({ onBack }: NotificationsScreenProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-soft-white flex flex-col">
+    <div className="fixed inset-0 bg-soft-white dark:bg-dark-bg flex flex-col">
       {/* Header */}
-      <header className="bg-white border-b border-border-light px-4 py-3 flex items-center gap-3">
+      <header className="bg-white dark:bg-dark-surface border-b border-border-light dark:border-dark-border px-4 py-3 flex items-center gap-3">
         <button
           onClick={onBack}
-          className="p-2 hover:bg-soft-white rounded-full transition-colors -ml-2"
+          className="p-2 hover:bg-soft-white dark:hover:bg-dark-surface-elevated rounded-full transition-colors -ml-2"
         >
-          <ArrowLeft className="w-5 h-5" />
+          <ArrowLeft className="w-5 h-5 text-text-primary dark:text-dark-text-primary" />
         </button>
         <h2>Notifications</h2>
       </header>
@@ -43,8 +43,8 @@ export function NotificationsScreen({ onBack }: NotificationsScreenProps) {
           {notifications.map((notification) => (
             <button
               key={notification.id}
-              className={`w-full px-4 py-4 flex items-start gap-3 border-b border-border-light hover:bg-white transition-colors ${
-                !notification.isRead ? 'bg-nexora-blue/5' : ''
+              className={`w-full px-4 py-4 flex items-start gap-3 border-b border-border-light dark:border-dark-border hover:bg-white dark:hover:bg-dark-surface transition-colors ${
+                !notification.isRead ? 'bg-nexora-blue/5 dark:bg-nexora-blue/10' : ''
               }`}
             >
               <ImageWithFallback
@@ -54,11 +54,11 @@ export function NotificationsScreen({ onBack }: NotificationsScreenProps) {
               />
 
               <div className="flex-1 text-left min-w-0">
-                <p className="text-text-primary">
+                <p className="text-text-primary dark:text-dark-text-primary">
                   <span className="font-semibold">{notification.user.name}</span>{' '}
                   {notification.content}
                 </p>
-                <p className="text-text-secondary mt-1">{notification.timestamp}</p>
+                <p className="text-text-secondary dark:text-dark-text-secondary mt-1">{notification.timestamp}</p>
               </div>
 
               <div className="flex items-center gap-2 flex-shrink-0">

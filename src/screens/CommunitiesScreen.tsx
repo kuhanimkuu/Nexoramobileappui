@@ -33,19 +33,19 @@ export function CommunitiesScreen({ onCommunitySelect, onCreateCommunity }: Comm
       : communities;
 
   return (
-    <div className="min-h-screen bg-soft-white pb-20">
+    <div className="min-h-screen bg-soft-white dark:bg-dark-bg pb-20">
       {/* Header */}
-      <header className="sticky top-0 bg-white border-b border-border-light z-40">
+      <header className="sticky top-0 bg-white dark:bg-dark-surface border-b border-border-light dark:border-dark-border z-40">
         <div className="max-w-2xl mx-auto px-4 py-4">
           <h2 className="mb-3">Communities</h2>
 
           {/* Search */}
           <div className="relative mb-3">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary dark:text-dark-text-secondary" />
             <input
               type="text"
               placeholder="Search communities..."
-              className="w-full h-11 pl-10 pr-4 bg-soft-white rounded-xl border border-border-light focus:outline-none focus:border-nexora-blue transition-colors"
+              className="w-full h-11 pl-10 pr-4 bg-soft-white dark:bg-dark-bg rounded-xl border border-border-light dark:border-dark-border focus:outline-none focus:border-nexora-blue transition-colors text-text-primary dark:text-dark-text-primary placeholder:text-text-muted dark:placeholder:text-dark-text-muted"
             />
           </div>
 
@@ -56,7 +56,7 @@ export function CommunitiesScreen({ onCommunitySelect, onCreateCommunity }: Comm
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                 activeFilter === 'all'
                   ? 'bg-nexora-blue text-white'
-                  : 'bg-soft-white text-text-secondary hover:bg-border-light'
+                  : 'bg-soft-white dark:bg-dark-bg text-text-secondary dark:text-dark-text-secondary hover:bg-border-light dark:hover:bg-dark-border'
               }`}
             >
               All Communities
@@ -66,7 +66,7 @@ export function CommunitiesScreen({ onCommunitySelect, onCreateCommunity }: Comm
               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                 activeFilter === 'joined'
                   ? 'bg-nexora-blue text-white'
-                  : 'bg-soft-white text-text-secondary hover:bg-border-light'
+                  : 'bg-soft-white dark:bg-dark-bg text-text-secondary dark:text-dark-text-secondary hover:bg-border-light dark:hover:bg-dark-border'
               }`}
             >
               Joined
@@ -90,7 +90,7 @@ export function CommunitiesScreen({ onCommunitySelect, onCreateCommunity }: Comm
 
         {filteredCommunities.length === 0 && (
           <div className="text-center py-16">
-            <p className="text-text-secondary">No communities found</p>
+            <p className="text-text-secondary dark:text-dark-text-secondary">No communities found</p>
           </div>
         )}
       </main>

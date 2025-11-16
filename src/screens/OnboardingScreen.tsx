@@ -42,59 +42,65 @@ export function OnboardingScreen({ onComplete, onSignIn }: OnboardingScreenProps
   };
 
   return (
-    <div className="fixed inset-0 bg-soft-white flex flex-col">
+    <div className="fixed inset-0 bg-soft-white dark:bg-dark-bg flex flex-col">
       {/* Skip */}
       <div className="flex justify-end p-6">
         <button
           onClick={onComplete}
-          className="text-text-secondary hover:text-nexora-blue transition-colors font-medium"
+          className="text-text-secondary dark:text-dark-text-secondary hover:text-nexora-blue transition-colors font-medium"
         >
           Skip
         </button>
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-8 pb-24">
-        <div
-          className={`w-40 h-40 rounded-3xl bg-gradient-to-br ${slide.gradient} flex items-center justify-center mb-12 shadow-2xl animate-scale-in`}
-        >
-          <Icon className="w-20 h-20 text-white" strokeWidth={1.5} />
+      <div className="flex-1 flex flex-col items-center justify-center px-6">
+        <div className={`w-32 h-32 rounded-full bg-gradient-to-br ${slide.gradient} flex items-center justify-center mb-8 shadow-fab animate-scale-in`}>
+          <Icon className="w-16 h-16 text-white" />
         </div>
 
-        <h2 className="text-center mb-4 animate-fade-in">{slide.title}</h2>
-        <p className="text-text-secondary text-center max-w-sm leading-relaxed animate-fade-in">
-          {slide.description}
-        </p>
+        <div className="text-center max-w-md animate-fade-in">
+          <h2 className="mb-3">{slide.title}</h2>
+          <p className="text-text-secondary dark:text-dark-text-secondary">{slide.description}</p>
+        </div>
+      </div>
 
+      {/* Footer */}
+      <div className="p-6 pb-8">
         {/* Dots */}
-        <div className="flex gap-2 mt-12">
+        <div className="flex justify-center gap-2 mb-6">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`h-2 rounded-full transition-all ${
-                index === currentSlide ? 'w-8 bg-nexora-blue' : 'w-2 bg-border-light'
+                index === currentSlide
+                  ? 'w-8 bg-nexora-blue'
+                  : 'w-2 bg-border-light dark:bg-dark-border'
               }`}
             />
           ))}
         </div>
-      </div>
 
-      {/* Buttons */}
-      <div className="p-6 space-y-3">
-        <Button
-          onClick={handleNext}
-          className="w-full h-12 bg-gradient-to-r from-nexora-blue to-accent-purple hover:opacity-90 text-white"
-        >
-          {currentSlide < slides.length - 1 ? 'Next' : 'Get Started'}
-        </Button>
-        <Button
-          onClick={onSignIn}
-          variant="outline"
-          className="w-full h-12 border-2 border-nexora-blue text-nexora-blue hover:bg-nexora-blue hover:text-white"
-        >
-          Sign In
-        </Button>
+        {/* Buttons */}
+        <div className="space-y-3">
+          <Button
+            onClick={handleNext}
+            className="w-full h-12 bg-gradient-to-r from-nexora-blue to-accent-purple hover:opacity-90 text-white"
+          >
+            {currentSlide === slides.length - 1 ? 'Get Started' : 'Next'}
+          </Button>
+
+          {currentSlide === slides.length - 1 && (
+            <Button
+              onClick={onSignIn}
+              variant="outline"
+              className="w-full h-12 border-2 dark:border-dark-border dark:text-dark-text-primary dark:hover:bg-dark-surface-elevated"
+            >
+              I already have an account
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );

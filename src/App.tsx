@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ThemeProvider } from './contexts/ThemeContext';
 import { SplashScreen } from './screens/SplashScreen';
 import { OnboardingScreen } from './screens/OnboardingScreen';
 import { AuthScreen } from './screens/AuthScreen';
@@ -67,87 +68,89 @@ export default function App() {
   const showBottomNav = ['home', 'chats', 'communities', 'profile'].includes(currentScreen);
 
   return (
-    <div className="relative">
-      {/* Screens */}
-      {currentScreen === 'splash' && (
-        <SplashScreen onComplete={() => navigate('onboarding')} />
-      )}
+    <ThemeProvider>
+      <div className="relative">
+        {/* Screens */}
+        {currentScreen === 'splash' && (
+          <SplashScreen onComplete={() => navigate('onboarding')} />
+        )}
 
-      {currentScreen === 'onboarding' && (
-        <OnboardingScreen
-          onComplete={() => navigate('auth')}
-          onSignIn={() => navigate('auth')}
-        />
-      )}
+        {currentScreen === 'onboarding' && (
+          <OnboardingScreen
+            onComplete={() => navigate('auth')}
+            onSignIn={() => navigate('auth')}
+          />
+        )}
 
-      {currentScreen === 'auth' && <AuthScreen onAuth={() => navigate('home')} />}
+        {currentScreen === 'auth' && <AuthScreen onAuth={() => navigate('home')} />}
 
-      {currentScreen === 'home' && (
-        <HomeScreen
-          onCreatePost={() => navigate('createPost')}
-          onNotifications={() => navigate('notifications')}
-          onPostDetail={handlePostDetail}
-        />
-      )}
+        {currentScreen === 'home' && (
+          <HomeScreen
+            onCreatePost={() => navigate('createPost')}
+            onNotifications={() => navigate('notifications')}
+            onPostDetail={handlePostDetail}
+          />
+        )}
 
-      {currentScreen === 'chats' && (
-        <ChatsScreen
-          onChatSelect={() => navigate('chatDetail')}
-          onNewChat={() => navigate('chatDetail')}
-        />
-      )}
+        {currentScreen === 'chats' && (
+          <ChatsScreen
+            onChatSelect={() => navigate('chatDetail')}
+            onNewChat={() => navigate('chatDetail')}
+          />
+        )}
 
-      {currentScreen === 'chatDetail' && <ChatDetailScreen onBack={goBack} />}
+        {currentScreen === 'chatDetail' && <ChatDetailScreen onBack={goBack} />}
 
-      {currentScreen === 'communities' && (
-        <CommunitiesScreen
-          onCommunitySelect={handleCommunitySelect}
-          onCreateCommunity={() => console.log('Create community')}
-        />
-      )}
+        {currentScreen === 'communities' && (
+          <CommunitiesScreen
+            onCommunitySelect={handleCommunitySelect}
+            onCreateCommunity={() => console.log('Create community')}
+          />
+        )}
 
-      {currentScreen === 'communityDetail' && (
-        <CommunityDetailScreen
-          communityId={selectedCommunityId}
-          onBack={goBack}
-          onPostDetail={handlePostDetail}
-        />
-      )}
+        {currentScreen === 'communityDetail' && (
+          <CommunityDetailScreen
+            communityId={selectedCommunityId}
+            onBack={goBack}
+            onPostDetail={handlePostDetail}
+          />
+        )}
 
-      {currentScreen === 'profile' && (
-        <ProfileScreen onSettings={() => navigate('settings')} />
-      )}
+        {currentScreen === 'profile' && (
+          <ProfileScreen onSettings={() => navigate('settings')} />
+        )}
 
-      {currentScreen === 'notifications' && <NotificationsScreen onBack={goBack} />}
+        {currentScreen === 'notifications' && <NotificationsScreen onBack={goBack} />}
 
-      {currentScreen === 'postDetail' && (
-        <PostDetailScreen postId={selectedPostId} onBack={goBack} />
-      )}
+        {currentScreen === 'postDetail' && (
+          <PostDetailScreen postId={selectedPostId} onBack={goBack} />
+        )}
 
-      {currentScreen === 'createPost' && (
-        <CreatePostScreen
-          onBack={goBack}
-          onPost={(content, image) => {
-            console.log('New post:', content, image);
-          }}
-        />
-      )}
+        {currentScreen === 'createPost' && (
+          <CreatePostScreen
+            onBack={goBack}
+            onPost={(content, image) => {
+              console.log('New post:', content, image);
+            }}
+          />
+        )}
 
-      {currentScreen === 'createPoll' && (
-        <CreatePollScreen
-          onBack={goBack}
-          onCreatePoll={(question, options) => {
-            console.log('New poll:', question, options);
-          }}
-        />
-      )}
+        {currentScreen === 'createPoll' && (
+          <CreatePollScreen
+            onBack={goBack}
+            onCreatePoll={(question, options) => {
+              console.log('New poll:', question, options);
+            }}
+          />
+        )}
 
-      {currentScreen === 'settings' && (
-        <SettingsScreen onBack={goBack} onLogout={() => navigate('auth')} />
-      )}
+        {currentScreen === 'settings' && (
+          <SettingsScreen onBack={goBack} onLogout={() => navigate('auth')} />
+        )}
 
-      {/* Bottom Navigation */}
-      {showBottomNav && <BottomNav activeTab={activeTab} onTabChange={handleTabChange} />}
-    </div>
+        {/* Bottom Navigation */}
+        {showBottomNav && <BottomNav activeTab={activeTab} onTabChange={handleTabChange} />}
+      </div>
+    </ThemeProvider>
   );
 }

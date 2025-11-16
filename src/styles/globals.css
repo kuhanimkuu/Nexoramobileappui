@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  /* Nexora Brand Colors */
+  /* Light Mode Colors */
   --color-nexora-blue: #2979FF;
   --color-deep-indigo: #2C2E4A;
   --color-soft-white: #F7F9FC;
   --color-accent-purple: #8A2BE2;
   
-  /* Extended Palette */
+  /* Extended Palette - Light */
   --color-chat-sent: #2979FF;
   --color-chat-received: #E8EAF0;
   --color-border-light: #E1E4EB;
@@ -17,20 +17,33 @@
   --color-success: #10B981;
   --color-error: #EF4444;
   --color-warning: #F59E0B;
+  --color-background: #FFFFFF;
+  
+  /* Dark Mode Colors */
+  --color-dark-bg: #0F1419;
+  --color-dark-surface: #1A1F2E;
+  --color-dark-surface-elevated: #232938;
+  --color-dark-border: #2D3748;
+  --color-dark-text-primary: #F7F9FC;
+  --color-dark-text-secondary: #A0AEC0;
+  --color-dark-text-muted: #718096;
+  --color-dark-chat-received: #2D3748;
   
   /* Shadows */
   --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.05);
   --shadow-card-hover: 0 4px 12px 0 rgb(0 0 0 / 0.08);
   --shadow-fab: 0 8px 24px 0 rgb(41 121 255 / 0.3);
+  --shadow-dark-card: 0 1px 3px 0 rgb(0 0 0 / 0.3);
+  --shadow-dark-card-hover: 0 4px 12px 0 rgb(0 0 0 / 0.4);
 }
 
 @layer base {
   * {
-    @apply border-border-light;
+    @apply border-border-light dark:border-dark-border;
   }
   
   body {
-    @apply bg-soft-white text-text-primary antialiased;
+    @apply bg-soft-white dark:bg-dark-bg text-text-primary dark:text-dark-text-primary antialiased;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
   
@@ -72,12 +85,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  @apply bg-border-light dark:bg-dark-border;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  @apply bg-text-muted dark:bg-dark-text-muted;
 }
 
 /* Animations */

@@ -18,7 +18,7 @@ export function CommunityCard({ community, onClick, onJoinToggle }: CommunityCar
   };
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-200">
+    <div className="bg-white dark:bg-dark-surface rounded-2xl overflow-hidden shadow-card dark:shadow-dark-card hover:shadow-card-hover dark:hover:shadow-dark-card-hover transition-all duration-200">
       {/* Cover Image */}
       <button onClick={onClick} className="w-full">
         <div className="h-32 relative overflow-hidden">
@@ -29,7 +29,7 @@ export function CommunityCard({ community, onClick, onJoinToggle }: CommunityCar
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           <div className="absolute bottom-3 left-3 flex items-center gap-2">
-            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-2xl shadow-lg">
+            <div className="w-12 h-12 bg-white dark:bg-dark-surface rounded-xl flex items-center justify-center text-2xl shadow-lg">
               {community.icon}
             </div>
           </div>
@@ -40,16 +40,16 @@ export function CommunityCard({ community, onClick, onJoinToggle }: CommunityCar
       <div className="p-4">
         <button onClick={onClick} className="w-full text-left mb-3">
           <h3 className="mb-1">{community.name}</h3>
-          <p className="text-text-secondary line-clamp-2">{community.description}</p>
+          <p className="text-text-secondary dark:text-dark-text-secondary line-clamp-2">{community.description}</p>
         </button>
 
         {/* Stats */}
         <div className="flex items-center gap-4 mb-3">
-          <div className="flex items-center gap-1 text-text-secondary">
+          <div className="flex items-center gap-1 text-text-secondary dark:text-dark-text-secondary">
             <Users className="w-4 h-4" />
             <span>{formatNumber(community.members)}</span>
           </div>
-          <div className="flex items-center gap-1 text-text-secondary">
+          <div className="flex items-center gap-1 text-text-secondary dark:text-dark-text-secondary">
             <FileText className="w-4 h-4" />
             <span>{formatNumber(community.posts)} posts</span>
           </div>
@@ -67,7 +67,7 @@ export function CommunityCard({ community, onClick, onJoinToggle }: CommunityCar
           }}
           className={`w-full h-10 ${
             community.isJoined
-              ? 'bg-white border-2 border-nexora-blue text-nexora-blue hover:bg-nexora-blue hover:text-white'
+              ? 'bg-white dark:bg-dark-surface border-2 border-nexora-blue text-nexora-blue hover:bg-nexora-blue hover:text-white'
               : 'bg-gradient-to-r from-nexora-blue to-accent-purple hover:opacity-90 text-white'
           }`}
         >

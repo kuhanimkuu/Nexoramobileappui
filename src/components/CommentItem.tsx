@@ -17,13 +17,13 @@ export function CommentItem({ comment, onLike }: CommentItemProps) {
       />
 
       <div className="flex-1 min-w-0">
-        <div className="bg-soft-white rounded-2xl px-4 py-3">
+        <div className="bg-soft-white dark:bg-dark-surface-elevated rounded-2xl px-4 py-3">
           <div className="flex items-center gap-2 mb-1">
-            <p className="font-semibold text-text-primary">{comment.user.name}</p>
-            <span className="text-text-secondary">•</span>
-            <span className="text-text-secondary">{comment.timestamp}</span>
+            <p className="font-semibold text-text-primary dark:text-dark-text-primary">{comment.user.name}</p>
+            <span className="text-text-secondary dark:text-dark-text-secondary">•</span>
+            <span className="text-text-secondary dark:text-dark-text-secondary">{comment.timestamp}</span>
           </div>
-          <p className="text-text-primary">{comment.content}</p>
+          <p className="text-text-primary dark:text-dark-text-primary">{comment.content}</p>
         </div>
 
         {/* Actions */}
@@ -31,7 +31,7 @@ export function CommentItem({ comment, onLike }: CommentItemProps) {
           <button
             onClick={onLike}
             className={`flex items-center gap-1 group transition-colors ${
-              comment.isLiked ? 'text-nexora-blue' : 'text-text-secondary hover:text-nexora-blue'
+              comment.isLiked ? 'text-nexora-blue' : 'text-text-secondary dark:text-dark-text-secondary hover:text-nexora-blue'
             }`}
           >
             <Heart
@@ -41,7 +41,7 @@ export function CommentItem({ comment, onLike }: CommentItemProps) {
             />
             {comment.likes > 0 && <span className="font-medium">{comment.likes}</span>}
           </button>
-          <button className="text-text-secondary hover:text-nexora-blue transition-colors font-medium">
+          <button className="text-text-secondary dark:text-dark-text-secondary hover:text-nexora-blue transition-colors font-medium">
             Reply
           </button>
         </div>

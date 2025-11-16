@@ -44,12 +44,12 @@ export function PostDetailScreen({ postId, onBack }: PostDetailScreenProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-soft-white flex flex-col">
+    <div className="fixed inset-0 bg-soft-white dark:bg-dark-bg flex flex-col">
       {/* Header */}
-      <header className="bg-white border-b border-border-light px-4 py-3 flex items-center gap-3">
+      <header className="bg-white dark:bg-dark-surface border-b border-border-light dark:border-dark-border px-4 py-3 flex items-center gap-3">
         <button
           onClick={onBack}
-          className="p-2 hover:bg-soft-white rounded-full transition-colors -ml-2"
+          className="p-2 hover:bg-soft-white dark:hover:bg-dark-surface-elevated rounded-full transition-colors -ml-2"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
@@ -60,7 +60,7 @@ export function PostDetailScreen({ postId, onBack }: PostDetailScreenProps) {
       <main className="flex-1 overflow-y-auto">
         <div className="max-w-2xl mx-auto">
           {/* Post */}
-          <div className="bg-white border-b border-border-light p-4">
+          <div className="bg-white dark:bg-dark-surface border-b border-border-light dark:border-dark-border p-4">
             {/* User Info */}
             <div className="flex items-start justify-between mb-3">
               <div className="flex items-center gap-3">
@@ -70,21 +70,21 @@ export function PostDetailScreen({ postId, onBack }: PostDetailScreenProps) {
                   className="w-12 h-12 rounded-full object-cover"
                 />
                 <div>
-                  <p className="font-semibold text-text-primary">{post.user.name}</p>
-                  <div className="flex items-center gap-2 text-text-secondary">
+                  <p className="font-semibold text-text-primary dark:text-dark-text-primary">{post.user.name}</p>
+                  <div className="flex items-center gap-2 text-text-secondary dark:text-dark-text-secondary">
                     <span>{post.user.username}</span>
                     <span>•</span>
                     <span>{post.timestamp}</span>
                   </div>
                 </div>
               </div>
-              <button className="p-2 hover:bg-soft-white rounded-full transition-colors">
-                <MoreHorizontal className="w-5 h-5 text-text-secondary" />
+              <button className="p-2 hover:bg-soft-white dark:hover:bg-dark-surface-elevated rounded-full transition-colors">
+                <MoreHorizontal className="w-5 h-5 text-text-secondary dark:text-dark-text-secondary" />
               </button>
             </div>
 
             {/* Content */}
-            <p className="text-text-primary mb-3 leading-relaxed">{post.content}</p>
+            <p className="text-text-primary dark:text-dark-text-primary mb-3 leading-relaxed">{post.content}</p>
 
             {/* Image */}
             {post.image && (
@@ -98,7 +98,7 @@ export function PostDetailScreen({ postId, onBack }: PostDetailScreenProps) {
             )}
 
             {/* Stats */}
-            <div className="flex items-center gap-4 py-3 border-t border-b border-border-light my-3 text-text-secondary">
+            <div className="flex items-center gap-4 py-3 border-t border-b border-border-light dark:border-dark-border my-3 text-text-secondary dark:text-dark-text-secondary">
               <span>{likes} likes</span>
               <span>{comments.length} comments</span>
               <span>{post.shares} shares</span>
@@ -109,7 +109,7 @@ export function PostDetailScreen({ postId, onBack }: PostDetailScreenProps) {
               <button
                 onClick={handleLike}
                 className={`flex items-center gap-2 group transition-all ${
-                  isLiked ? 'text-nexora-blue' : 'text-text-secondary hover:text-nexora-blue'
+                  isLiked ? 'text-nexora-blue' : 'text-text-secondary dark:text-dark-text-secondary hover:text-nexora-blue'
                 }`}
               >
                 <Heart
@@ -120,12 +120,12 @@ export function PostDetailScreen({ postId, onBack }: PostDetailScreenProps) {
                 <span className="font-medium">Like</span>
               </button>
 
-              <button className="flex items-center gap-2 text-text-secondary hover:text-nexora-blue transition-all group">
+              <button className="flex items-center gap-2 text-text-secondary dark:text-dark-text-secondary hover:text-nexora-blue transition-all group">
                 <MessageCircle className="w-6 h-6 transition-transform group-hover:scale-110" />
                 <span className="font-medium">Comment</span>
               </button>
 
-              <button className="flex items-center gap-2 text-text-secondary hover:text-nexora-blue transition-all group">
+              <button className="flex items-center gap-2 text-text-secondary dark:text-dark-text-secondary hover:text-nexora-blue transition-all group">
                 <Share2 className="w-6 h-6 transition-transform group-hover:scale-110" />
                 <span className="font-medium">Share</span>
               </button>
@@ -133,12 +133,12 @@ export function PostDetailScreen({ postId, onBack }: PostDetailScreenProps) {
           </div>
 
           {/* Comments Section */}
-          <div className="bg-white">
-            <div className="px-4 py-3 border-b border-border-light">
+          <div className="bg-white dark:bg-dark-surface">
+            <div className="px-4 py-3 border-b border-border-light dark:border-dark-border">
               <h3>Comments</h3>
             </div>
 
-            <div className="divide-y divide-border-light px-4">
+            <div className="divide-y divide-border-light dark:divide-dark-border px-4">
               {comments.map((comment) => (
                 <CommentItem
                   key={comment.id}
@@ -152,7 +152,7 @@ export function PostDetailScreen({ postId, onBack }: PostDetailScreenProps) {
       </main>
 
       {/* Comment Input */}
-      <footer className="bg-white border-t border-border-light px-4 py-3">
+      <footer className="bg-white dark:bg-dark-surface border-t border-border-light dark:border-dark-border px-4 py-3">
         <form onSubmit={handleSubmitComment} className="flex items-center gap-2 max-w-2xl mx-auto">
           <ImageWithFallback
             src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&h=200&fit=crop"
@@ -160,19 +160,19 @@ export function PostDetailScreen({ postId, onBack }: PostDetailScreenProps) {
             className="w-10 h-10 rounded-full object-cover flex-shrink-0"
           />
 
-          <div className="flex-1 flex items-center gap-2 bg-soft-white rounded-full px-4 py-2 border border-border-light focus-within:border-nexora-blue transition-colors">
+          <div className="flex-1 flex items-center gap-2 bg-soft-white dark:bg-dark-bg rounded-full px-4 py-2 border border-border-light dark:border-dark-border focus-within:border-nexora-blue transition-colors">
             <input
               type="text"
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
               placeholder="Write a comment..."
-              className="flex-1 bg-transparent focus:outline-none text-text-primary"
+              className="flex-1 bg-transparent focus:outline-none text-text-primary dark:text-dark-text-primary placeholder:text-text-muted dark:placeholder:text-dark-text-muted"
             />
             <button
               type="button"
-              className="p-1 hover:bg-white rounded-full transition-colors flex-shrink-0"
+              className="p-1 hover:bg-white dark:hover:bg-dark-surface rounded-full transition-colors flex-shrink-0"
             >
-              <Smile className="w-5 h-5 text-text-secondary" />
+              <Smile className="w-5 h-5 text-text-secondary dark:text-dark-text-secondary" />
             </button>
           </div>
 
